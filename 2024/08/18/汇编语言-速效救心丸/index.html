@@ -13,13 +13,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="帮助快速上手汇编语言编程，虽然只限于编程 VScode配置调试环境 安装插件TASM&#x2F;MASM 右键扩展设置，选择Assembler：MASM 右键调试即可开始调试了！  Debug.exe R命令：查看、改变CPU寄存器的内容        D命令：查看内存中的内容        T命令：执行一条机器指令        G命令：从停顿的地方运行到底  第一段代码：Hello World">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200512110737331.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDk5NDU1Mg==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200512122803832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDk5NDU1Mg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://example.com/images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/1.jpg">
+<meta property="og:image" content="http://example.com/images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/2.png">
+<meta property="og:image" content="http://example.com/images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/3.png">
 <meta property="article:published_time" content="2024-08-18T02:50:08.000Z">
-<meta property="article:modified_time" content="2024-08-18T02:51:27.390Z">
+<meta property="article:modified_time" content="2024-09-04T11:48:33.485Z">
 <meta property="article:author" content="LoveNaOHbest">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200512110737331.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDk5NDU1Mg==,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="http://example.com/images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,7 +149,7 @@
 </ol>
 <h1 id="寄存器的使用"><a href="#寄存器的使用" class="headerlink" title="寄存器的使用"></a>寄存器的使用</h1><p>在汇编语言中，我们不能对内存中的数据进行直接操作，如果要操作，需要把数据先<code>MOV</code>到寄存器中再进行处理。<br>为了写代码的过程更顺滑，最好先简单了解一下这些寄存器的使用，当然，你也可以只了解通用寄存器的使用，别的等用到了再去查询。<br>我会尽可能简单地表述。</p>
 <p>8086 CPU 中有14个16位寄存器 。16位的存储可以用16进制表示，BeLike：<code>123AH</code>（H表示16进制)在查看内存情况的时候，由于数据从高位到低位存储，BeLike：<code>3A 12</code></p>
-<p><img src="https://img-blog.csdnimg.cn/20200512110737331.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDk5NDU1Mg==,size_16,color_FFFFFF,t_70#pic_center">  </p>
+<p>  <img src="/../images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/1.jpg" alt="1"></p>
 <h3 id="通用寄存器：AX，BX，CX，DX"><a href="#通用寄存器：AX，BX，CX，DX" class="headerlink" title="通用寄存器：AX，BX，CX，DX"></a>通用寄存器：AX，BX，CX，DX</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DSEG ...</span><br><span class="line">X DB 12H</span><br><span class="line">Y DB ?</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">CSEG...</span><br><span class="line">...</span><br><span class="line">MOV AH,X</span><br><span class="line">MOV Y,AH ;Y--12H</span><br></pre></td></tr></table></figure>
 
 
@@ -172,7 +173,7 @@
 <p>在代码段的开始，我们就用Assume语句声明CS、DS、SS的地址<br>和CS不同，DS和SS寄存器的值需要我们手动指定，而与SS寄存器绑定的SP指针也需要我们手动设置（SS:SP指向的就是栈顶元素）</p>
 <p>ES是Extra Segment，程序有附加段落的时候才用，用法和DS SS差不多</p>
 <h3 id="标志寄存器-FLAG"><a href="#标志寄存器-FLAG" class="headerlink" title="标志寄存器 FLAG"></a>标志寄存器 FLAG</h3><p>只是写代码的话不用管它<br>16位分开使用，有各自不同的意思，结果会以下面的形式呈现在-R中</p>
-<p><img src="https://img-blog.csdnimg.cn/20200512122803832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDk5NDU1Mg==,size_16,color_FFFFFF,t_70"></p>
+<p><img src="/../images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/2.png" alt="2"></p>
 <h1 id="阶段练习"><a href="#阶段练习" class="headerlink" title="阶段练习"></a>阶段练习</h1><p>有以上的知识已经能写很多代码。</p>
 <h4 id="练习a-x-y"><a href="#练习a-x-y" class="headerlink" title="练习a: x+y"></a>练习a: x+y</h4><blockquote>
 <ol>
@@ -185,7 +186,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MAIN：MOV X,AX</span><br><span class="line">JUMP DONE</span><br><span class="line">MOV AX,Y</span><br><span class="line">...</span><br><span class="line">DONE:</span><br><span class="line">	MOV AH, 4CH</span><br><span class="line">	INT 21</span><br></pre></td></tr></table></figure>
 
 <p>在这段程序中，<code>MOV AX,Y</code>就会直接被跳过</p>
-<h3 id="2-分支和循环"><a href="#2-分支和循环" class="headerlink" title="2. 分支和循环"></a>2. 分支和循环</h3><h4 id="分支-CMP-JGE-…"><a href="#分支-CMP-JGE-…" class="headerlink" title="分支 CMP-JGE&#x2F;…"></a>分支 CMP-JGE&#x2F;…</h4><p>![Pasted image 20221206112205](..&#x2F;images&#x2F;汇编语言-速效救心丸&#x2F;Pasted image 20221206112205.png)</p>
+<h3 id="2-分支和循环"><a href="#2-分支和循环" class="headerlink" title="2. 分支和循环"></a>2. 分支和循环</h3><h4 id="分支-CMP-JGE-…"><a href="#分支-CMP-JGE-…" class="headerlink" title="分支 CMP-JGE&#x2F;…"></a>分支 CMP-JGE&#x2F;…</h4><p><img src="/../images/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/3.png" alt="3"></p>
 <p>BeLike:(求abs(AX)保存在AX中)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MAIN:</span><br><span class="line">...</span><br><span class="line">CMP AX,0</span><br><span class="line">JGE DONE; Jump if Greater or Equal</span><br><span class="line">NEG AX</span><br><span class="line">DONE:</span><br><span class="line">...</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
 
@@ -274,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/" data-id="cm0nsgnls00010c7mdwpcdvxc" data-title="汇编语言 速效救心丸" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/08/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E9%80%9F%E6%95%88%E6%95%91%E5%BF%83%E4%B8%B8/" data-id="cm0nsr7r30001y87ma3dyamlu" data-title="汇编语言 速效救心丸" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
